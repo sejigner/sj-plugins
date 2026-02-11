@@ -1,0 +1,5 @@
+{
+  "name": "document-editor",
+  "description": "문서를 웹 UI로 렌더링하여 문단별 코멘트 -> AI 수정안 -> Accept/Reject -> 파일 반영",
+  "version": "0.1.0"
+}
