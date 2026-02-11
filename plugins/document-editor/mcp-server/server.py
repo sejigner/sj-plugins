@@ -97,7 +97,7 @@ def make_handler(serve_dir: str):
     return handler
 
 
-async def _serve_and_wait(html_content: str, timeout: int = 300) -> dict[str, Any]:
+async def _serve_and_wait(html_content: str, timeout: int = 7200) -> dict[str, Any]:
     """
     Common pattern: write HTML to temp dir, serve via HTTP, open browser, wait for submit.
     Returns the submitted result or error/timeout dict.
@@ -207,7 +207,7 @@ async def collect_comments_impl(content: str, title: str = "Document") -> dict[s
         url = f"http://localhost:{port}/index.html"
         webbrowser.open(url)
 
-        timeout = 300
+        timeout = 7200
         result_received = await asyncio.get_event_loop().run_in_executor(
             None, lambda: _result_event.wait(timeout)
         )
@@ -215,7 +215,7 @@ async def collect_comments_impl(content: str, title: str = "Document") -> dict[s
         server.shutdown()
 
         if not result_received:
-            return {"status": "timeout", "message": "Timed out after 5 minutes"}
+            return {"status": "timeout", "message": "Timed out after 2 hours"}
 
         if _result is None:
             return {"status": "error", "message": "No result received"}
@@ -269,7 +269,7 @@ async def review_changes_impl(changes: list[dict]) -> dict[str, Any]:
         url = f"http://localhost:{port}/index.html"
         webbrowser.open(url)
 
-        timeout = 300
+        timeout = 7200
         result_received = await asyncio.get_event_loop().run_in_executor(
             None, lambda: _result_event.wait(timeout)
         )
@@ -277,7 +277,7 @@ async def review_changes_impl(changes: list[dict]) -> dict[str, Any]:
         server.shutdown()
 
         if not result_received:
-            return {"status": "timeout", "message": "Timed out after 5 minutes"}
+            return {"status": "timeout", "message": "Timed out after 2 hours"}
 
         if _result is None:
             return {"status": "error", "message": "No result received"}
