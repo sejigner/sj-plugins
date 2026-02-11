@@ -1,0 +1,10 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "sj-plugins",
+  "description": "Personal Claude Code plugins by sj.choi",
+  "owner": {
+    "name": "sejigner",
+    "url": "https://github.com/sejigner"
+  },
+  "plugins": []
+}
